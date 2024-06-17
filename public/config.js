@@ -446,6 +446,26 @@ window.CONFIG = {
             },
             textColor: '#fff',
         },
+        {
+            name: 'Onmail',
+            url: 'https://mail.onmail.com',
+            normalisedURL: 'mail.onmail.com',
+            bgColor: {
+                type: 'solid',
+                color: '#0953F1',
+            },
+            textColor: '#FFF',
+        },
+        {
+            name: 'Protonmail',
+            url: 'https://mail.protonmail.com',
+            normalisedURL: 'mail.protonmail.com',
+            bgColor: {
+                type: 'solid',
+                color: '#6A48F7',
+            },
+            textColor: '#000',
+        },
     ],
     commands: [
         {
