@@ -55,7 +55,7 @@ const template = {
   },
   query: {
     forceSearchEngineOnCtrl: new types.Switch(true),
-    notifyAboutForcedSearchEngine: new types.Switch(true),
+    notifyAboutForcedSearchEngine: new types.Switch(false),
     field: {
       fontSize: new types.Range(
         5,

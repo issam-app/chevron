@@ -350,14 +350,14 @@ export class Theme {
   ]
   static defaultColors = {
     light: {
-      primary: '#212121',
-      secondary: '#dee1e6',
-      accent: '#3b72ff'
+      primary: '#4c4f69',
+      secondary: '#eff1f5',
+      accent: '#7287fd'
     },
     dark: {
-      primary: '#f2f2f2',
-      secondary: '#212121',
-      accent: '#ffa00b'
+      primary: '#cad3f5',
+      secondary: '#24273a',
+      accent: '#b7bdf8'
     }
   }
 
