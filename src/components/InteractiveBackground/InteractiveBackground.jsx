@@ -8,7 +8,7 @@ function InteractiveBackground({
   width,
   height,
   color, // background color (can be a single string or an array of 2 strings for gradient)
-  marqueeText='', 
+  marqueeText='',
   marqueeSpeed=25,
   marqueeAngle=330,
   lineDensity=15, // space between lines

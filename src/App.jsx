@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState, useRef } from 'react'
 import { ColorSchemeContext, SettingsContext, ThemeContext } from './contexts/Settings'
-import { useReset, useStateSelector, useUpdate } from './contexts/Store'
+import { useReset, useStateSelector } from './contexts/Store'
 import { AnimatePresence, motion} from 'framer-motion'
 import ActiveElements from './components/ActiveElements/ActiveElements'
 import QueryField from './components/QueryField/QueryField'
 import Settings from './components/Settings/Settings'
 import LayoutButton from './components/LayoutButton/LayoutButton'
-import { BsGearFill, BsChevronRight } from 'react-icons/bs'
-import { RiMenu5Fill } from 'react-icons/ri'
-import { allowedModes } from './rules'
+import { BsGearFill } from 'react-icons/bs'
 import { isMobile } from 'react-device-detect'
 import classes from './App.module.css'
 import './App.css'
@@ -24,10 +22,8 @@ function App() {
   const colorScheme = useContext(ColorSchemeContext)
 
   /* store */
-  const mode = useStateSelector(state => state.mode)
   const redirected = useStateSelector(state => state.redirected)
   const timestamp = useStateSelector(state => state.timestamp)
-  const updateStore = useUpdate()
   const resetStore = useReset()
   // ---
 
@@ -35,50 +31,6 @@ function App() {
   const [showReset, setShowReset] = useState(false)
 
   /* handlers */
-  const onContextMenuRef = useRef(null)
-  const onKeyUpRef = useRef(null)
-  const onKeyDownRef = useRef(null)
-
-  function switchMacrosMenu() {
-    if (mode === 'default')
-      updateStore({ mode: 'opened' })
-    else if (mode === 'opened')
-      updateStore({ mode: 'default' })
-  }
-
-  onKeyUpRef.current = e => {
-    if (e.key === 'Shift')
-      if (allowedModes.get('Chevron').has(mode))
-        if (mode === 'opened')
-          updateStore({ mode: 'default' })
-  }
-  onKeyDownRef.current = e => {
-    if (e.key === 'Shift')
-        if (allowedModes.get('Chevron').has(mode))
-          if (mode === 'default')
-            updateStore({ mode: 'opened' })
-  }
-  onContextMenuRef.current = e => {
-    switchMacrosMenu()
-    e.preventDefault()
-  }
-  // ---
-
-  // adding event listeners
-  useEffect(() => {
-    const onContextMenu = e => onContextMenuRef.current(e)
-    const onKeyUp = e => onKeyUpRef.current(e)
-    const onKeyDown = e => onKeyDownRef.current(e)
-
-    document.addEventListener('keyup', onKeyUp)
-    document.addEventListener('keydown', onKeyDown)
-    document.addEventListener('contextmenu', onContextMenu)
-    return () => {
-      document.removeEventListener('keyup', onKeyUp)
-      document.removeEventListener('keydown', onKeyDown)
-      document.removeEventListener('contextmenu', onContextMenu)
-    }
-  }, [])
 
   /* setting document title */
   useEffect(() => {
@@ -136,17 +88,6 @@ function App() {
                         style={{ right: 0, top: 0 }}
                         onClick={() => setShowSettings(state => !state)}>
                           <BsGearFill/>
-                      </LayoutButton>
-                      <LayoutButton
-                        id='macros-menu'
-                        style={{ right: 0, bottom: 0 }}
-                        onClick={switchMacrosMenu}>
-                          {
-                            mode === 'default' && <RiMenu5Fill/>
-                          }
-                          {
-                            mode === 'opened' && <BsChevronRight/>
-                          }
                       </LayoutButton>
                       {
                         showReset && <div className={classes['cancel-button']} onClick={() => location.reload()}>Cancel</div>

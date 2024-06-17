@@ -1,11 +1,9 @@
-import { useMemo, useContext, useRef, useEffect, useState } from 'react'
+import { useMemo, useContext, useRef, useEffect } from 'react'
 import { SettingsContext, ThemeContext } from '../../contexts/Settings'
 import { useStateSelector } from '../../contexts/Store'
 import useTransitions from '../../hooks/useTransitions'
-import Time from '../Time/Time'
-import MacrosMenu from '../MacrosMenu/MacrosMenu'
 import { motion, useAnimationControls } from 'framer-motion'
-import { easeInOutQuad, easeInQuad, easeOutCubic, easeOutQuad } from '../../functions/animUtils/easings'
+import { easeInQuad, easeOutCubic, easeOutQuad } from '../../functions/animUtils/easings'
 import dC from '../../functions/generationUtils/dCommandToString'
 import classes from './Chevron.module.css'
 
@@ -49,8 +47,6 @@ function Chevron({ visibility, onAnimationEnd }) {
   useEffect(() => {
     modeRef.current = mode
   }, [mode])
-
-  const [isMacrosMenuRendered, setIsMacrosMenuRendered] = useState(false)
 
   const { stages, pivotOffset } = useMemo(() => {
     // stages of the shape for animating 
@@ -144,47 +140,6 @@ function Chevron({ visibility, onAnimationEnd }) {
               }
             })
           },
-          async opened() {
-            setIsMacrosMenuRendered(false)
-            // closing top menu element
-            controls.topMenu.start({
-              translateY: '100%',
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[2]
-              }
-            })
-            // closing bottom menu element
-            await controls.bottomMenu.start({
-              translateY: '-100%',
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[2]
-              }
-            })
-            //!
-            if (mode !== modeRef.current) return 
-            // shrinking and correcting "pivot"
-            await controls.path.start({
-              translateX: pivotOffset.x,
-              d: stages[3],
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[1]
-              }
-            })
-            //!
-            if (mode !== modeRef.current) return
-            // transforming into the initial shape
-            return await controls.path.start({
-              d: stages[0],
-              transition: {
-                ease: easeInOutQuad,
-                delay: .1,
-                duration: duration * timings.menu[0]
-              }
-            })
-          }
         },
         searching: {
           async default() {
@@ -217,56 +172,9 @@ function Chevron({ visibility, onAnimationEnd }) {
             return onAnimationEnd()
           }
         },
-        opened: {
-          async default() {
-            // make sure the svg element in the correct position
-            controls.svg.start({
-              left: '50%',
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[0]
-              }
-            })
-            // flattening (for "opened" mode)
-            await controls.path.start({
-              d: stages[3],
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[0]
-              }
-            })
-            // stretching
-            await controls.path.start({
-              translateX: 0,
-              d: stages[4],
-              transition: {
-                ease: easeInOutQuad,
-                delay: .1,
-                duration: duration * timings.menu[1]
-              }
-            })
-            // opening top menu element
-            controls.topMenu.start({
-              translateY: 0,
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[2]
-              }
-            })
-            // opening bottom menu element
-            await controls.bottomMenu.start({
-              translateY: 0,
-              transition: {
-                ease: easeInOutQuad,
-                duration: duration * timings.menu[2]
-              }
-            })
-            return setIsMacrosMenuRendered(true)
-          }
-        }
       }
     })
-  }, [controls, duration, stages, mode, pivotOffset, onAnimationEnd])
+  }, [controls, duration, stages, pivotOffset, onAnimationEnd])
 
   useTransitions(mode, animations, visibility)
 
@@ -277,13 +185,6 @@ function Chevron({ visibility, onAnimationEnd }) {
           '--menu-offset': thickness/2 + 'px',
           visibility: visibility ? 'visible' : 'hidden'
         }}>
-        <div className={classes['wrapper']}>
-            <motion.div 
-              initial={{ translateY: '100%'}}
-              animate={controls.topMenu}>
-              <Time/>
-            </motion.div>
-        </div>
         <motion.svg
           initial={{ left: '50%' }}
           animate={controls.svg}
@@ -302,15 +203,6 @@ function Chevron({ visibility, onAnimationEnd }) {
             strokeLinejoin="round"
             vectorEffect="non-scaling-stroke"/>
         </motion.svg>
-        <div className={classes['wrapper']}>
-          <motion.div 
-            initial={{ translateY: '-100%'}}
-            animate={controls.bottomMenu}>
-              <MacrosMenu 
-                visibility={visibility}
-                fullVisibility={isMacrosMenuRendered}/>
-          </motion.div>
-        </div>
       </div>
   )
 }

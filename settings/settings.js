@@ -6,24 +6,14 @@ for (const key in window.CONFIG.engines)
 
 const template = {
   general: {
-    /* TODO
-      mode: new types.List('chevron', ['chevron', 'legacy']),
-    */
-    // from confing.engines (keys)
     searchEngine: new types.List('google', searchEngines),
-    searchHistory: new types.Switch(true),
     quickRedirect: new types.Switch(false),
     animationSpeed: new types.Range(
       400,
       { min: 0, max: 5000, step: 50 }, 
       { format: '{@}ms' }
     ),
-    /**
-     * languages: https://serpapi.com/google-languages
-     * countries: https://serpapi.com/google-countries
-     * locale parameter is used by autocomplete engine and other components 
-     */
-    locale: new types.Input('en', '[language]-[COUNTRY]'),
+    locale: new types.Input('fr-FR', '[language]-[COUNTRY]'),
     tabTitle: new types.Input('Chevron'),
     // hidden
     redirectTarget: new types.Switch('_self', ['_self', '_blank'])
@@ -74,56 +64,6 @@ const template = {
       ),
       caret: new types.Switch(false)
     },
-    suggestions: {
-      fontSize: new types.Range(
-        1.8,
-        { min: 0.1, max: 10, step: 0.1 }, 
-        { format: '{@}em' }
-      ),
-      autocompleteLimit: new types.Range(
-        10,
-        { min: 0, max: 50 }
-      ),
-      historyLimit: new types.Range(
-        5,
-        { min: 0, max: 50 }
-      )
-    },
-    AI: {
-      enabled: new types.Switch(true),
-      apiKey: new types.Input('', 'Enter your openai api key'),
-      temperature: new types.Range(
-        0.4,
-        { min: 0, max: 1, step: 0.05 }
-      ),
-      language: new types.Input('')      
-    }
-  },
-  menu: {
-    rows: new types.Range(
-      2,
-      { min: 1, max: 20 }
-    ),
-    columns: new types.Range(
-      4,
-      { min: 1, max: 20 }
-    ),
-    gap: new types.Range(
-      10,
-      { min: 0, max: 50 },
-      { format: '{@}px' }
-    ),
-    pagination: new types.Switch(false),
-    arrows: new types.Switch(true),
-    drag: new types.Switch(true),
-    time: {
-      fontSize: new types.Range(
-        1,
-        { min: 0.1, max: 10, step: 0.1 }, 
-        { format: '{@}em' }
-      ),
-      format: new types.Input('h:MM')
-    }
   }
 }
 

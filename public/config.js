@@ -3,11 +3,6 @@ window.CONFIG = {
     {
       category: 'Entertainment',
       name: 'YouTube',
-      triggers: [
-        'y',
-        'yt',
-        'youtube',
-      ],
       key: 'KeyY',
       icon: 'youtube',
       url: 'https://youtube.com',
@@ -34,14 +29,6 @@ window.CONFIG = {
       icon: 'telegram',
       url: 'http://t.me',
       normalisedURL: 't.me',
-      triggers: [
-        'm',
-        'tm',
-        'tg',
-        'teleg',
-        'telega',
-        'telegram'
-      ],
       key: 'KeyM',
       commands: {
         go: {
@@ -63,12 +50,6 @@ window.CONFIG = {
       icon: 'whatsApp',
       url: 'https://web.whatsapp.com',
       normalisedURL: 'whatsapp.com',
-      triggers: [
-        'w',
-        'wa',
-        'wapp',
-        'wahtsapp',
-      ],
       key: 'KeyW',
       bgColor: {
         type: 'gradient',
@@ -82,11 +63,6 @@ window.CONFIG = {
     {
       category: 'Social',
       name: 'Reddit',
-      triggers: [
-        'r',
-        'rd',
-        'reddit',
-      ],
       key: 'KeyR',
       icon: 'reddit',
       url: 'https://reddit.com',
@@ -115,11 +91,6 @@ window.CONFIG = {
       icon: 'github',
       url: 'https://github.com',
       normalisedURL: 'github.com',
-      triggers: [
-        'g',
-        'git',
-        'github'
-      ],
       key: 'KeyG',
       commands: {
         go: {
@@ -143,13 +114,6 @@ window.CONFIG = {
       icon: 'stackoverflow',
       url: 'https://stackoverflow.com',
       normalisedURL: 'stackoverflow.com',
-      triggers: [
-        's',
-        'st',
-        'so',
-        'stack',
-        'stackoverflow'
-      ],
       key: 'KeyS',
       commands: {
         search: {
@@ -175,13 +139,6 @@ window.CONFIG = {
       icon: 'chatGPT',
       url: 'https://chat.openai.com/chat',
       normalisedURL: 'openai.com',
-      triggers: [
-        'c',
-        'chat',
-        'gpt',
-        'cgpt',
-        'chatgpt'
-      ],
       key: 'KeyC',
       bgColor: {
         type: 'solid',
@@ -196,10 +153,6 @@ window.CONFIG = {
       icon: 'translate',
       url: 'https://translate.google.com',
       normalisedURL: 'translate.google.com',
-      triggers: [
-        't',
-        'translate'
-      ],
       key: 'KeyT',
       commands: {
         search: {
@@ -219,12 +172,6 @@ window.CONFIG = {
     {
       category: 'Social',
       name: 'Instagram',
-      triggers: [
-        'i',
-        'ig',
-        'insta',
-        'instagram'
-      ],
       key: 'KeyI',
       icon: 'instagram',
       url: 'https://instagram.com',
@@ -251,13 +198,6 @@ window.CONFIG = {
       icon: 'spotify',
       url: 'https://open.spotify.com',
       normalisedURL: 'spotify.com',
-      triggers: [
-        'music',
-        'sp',
-        'sfy',
-        'spo',
-        'spotify'
-      ],
       commands: {
         search: {
           template: '{@}/search/{$}'
@@ -279,11 +219,6 @@ window.CONFIG = {
       name: 'Discord',
       icon: 'discord',
       key: 'KeyD',
-      triggers: [
-        'd',
-        'dis',
-        'discord'
-      ],
       url: 'https://discord.com/app',
       normalisedURL: 'discord.com',
       bgColor: {
@@ -299,10 +234,6 @@ window.CONFIG = {
       icon: 'twitch',
       url: 'https://twitch.tv',
       normalisedURL: 'twitch.tv',
-      triggers: [
-        'tw',
-        'twitch',
-      ],
       commands: {
         search: {
           template: '{@}/search?term={$}'
@@ -321,12 +252,6 @@ window.CONFIG = {
     {
       category: 'Entertainment',
       name: 'Netflix',
-      triggers: [
-        'n',
-        'nf',
-        'nfx',
-        'netflix',
-      ],
       key: 'KeyN',
       icon: 'netflix',
       url: 'https://media.netflix.com',
@@ -349,13 +274,6 @@ window.CONFIG = {
       icon: 'twitter',
       url: 'https://twitter.com',
       normalisedURL: 'twitter.com',
-      triggers: [
-        'tt',
-        'twt',
-        'twit',
-        'twitt',
-        'twitter'
-      ],
       commands: {
         search: {
           template: '{@}/search?q={$}'
@@ -376,13 +294,6 @@ window.CONFIG = {
       name: 'Linkedin',
       icon: 'linkedin',
       key: 'KeyL',
-      triggers: [
-        'l',
-        'lk',
-        'li',
-        'linked',
-        'linkedin'
-      ],
       url: 'https://linkedin.com',
       normalisedURL: 'linkedin.com',
       commands: {
@@ -403,12 +314,6 @@ window.CONFIG = {
       icon: 'gmail',
       url: 'https://gmail.com',
       normalisedURL: 'gmail.com',
-      triggers: [
-        'em',
-        'gm',
-        'mail',
-        'gmail'
-      ],
       key: 'KeyE',
       commands: {
         search: {
@@ -428,12 +333,6 @@ window.CONFIG = {
     {
       category: 'Work',
       name: 'Google Drive',
-      triggers: [
-        'gd',
-        'drive',
-        'gdrive',
-        'google',
-      ],
       icon: 'gdrive',
       url: 'https://drive.google.com',
       normalisedURL: 'drive.google.com',
@@ -449,12 +348,6 @@ window.CONFIG = {
     {
       category: 'Shopping',
       name: 'Amazon',
-      triggers: [
-        'a',
-        'am',
-        'amz',
-        'amazon',
-      ],
       icon: 'amazon',
       key: 'KeyA',
       url: 'https://www.amazon.com/',
@@ -472,11 +365,6 @@ window.CONFIG = {
       category: 'Education',
       name: 'Wikipedia',
       icon: 'wikipedia',
-      triggers: [
-        'wi',
-        'wiki',
-        'wikipedia'
-      ],
       url: 'https://www.wikipedia.org',
       normalisedURL: 'wikipedia.org',
       commands: {
@@ -500,10 +388,6 @@ window.CONFIG = {
       category: 'Work',
       name: 'Slack',
       icon: 'slack',
-      triggers: [
-        'sl',
-        'slack'
-      ],
       url: 'https://app.slack.com',
       normalisedURL: 'slack.com',
       bgColor: {
@@ -517,11 +401,6 @@ window.CONFIG = {
     {
       category: 'Social',
       name: 'VK',
-      triggers: [
-        'v',
-        'vk',
-        'vkontakte',
-      ],
       url: 'https://vk.com',
       normalisedURL: 'vk.com',
       commands: {
@@ -543,13 +422,6 @@ window.CONFIG = {
     {
       category: 'Search',
       name: 'DuckDuckGo',
-      triggers: [
-        'dd',
-        'ddg',
-        'duck',
-        'duckduck',
-        'duckduckgo'
-      ],
       url: 'https://duckduckgo.com',
       normalisedURL: 'duckduckgo.com',
       commands: {
@@ -566,10 +438,6 @@ window.CONFIG = {
     {
       category: 'Search',
       name: 'Bing',
-      triggers: [
-        'b',
-        'bing',
-      ],
       url: 'https://www.bing.com',
       normalisedURL: 'bing.com',
       commands: {
@@ -587,10 +455,6 @@ window.CONFIG = {
     {
       category: 'Search',
       name: 'Yandex',
-      triggers: [
-        'ya',
-        'yandex'
-      ],
       url: 'https://ya.ru',
       normalisedURL: 'ya.ru',
       commands: {

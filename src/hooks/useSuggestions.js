@@ -1,16 +1,11 @@
 import { useState, useCallback, useRef, useEffect, useContext } from 'react'
 import { SettingsContext } from '../contexts/Settings'
-import History from '../classes/localStorage/history'
 import axios from 'axios'
 import copyObj from '../functions/dataUtils/copyObj'
 import currencyCodes from '../currencies'
 
 const HIGHEST_RELEVANCE = 5000
-// the hierarchy of suggestion types: the lower index - the more higher in the hierarchy
-const hierarchy = ['currency', 'history', 'autocomplete']
-
-// search history
-const history = new History()
+const hierarchy = ['currency']
 
 function useSuggestions(query, autoCompleteEngine) {
   // settings
@@ -18,8 +13,6 @@ function useSuggestions(query, autoCompleteEngine) {
 
   const locale = settings.general.locale
   const autocompleteLimit = settings.query.suggestions.autocompleteLimit
-  const historyLimit = settings.query.suggestions.historyLimit
-  const searchHistory = settings.general.searchHistory
 
   const [suggestions, setSuggestions] = useState([])
   const addSuggestions = useCallback((suggestions, source) => {
@@ -80,10 +73,6 @@ function useSuggestions(query, autoCompleteEngine) {
     })
     // ---
 
-    /* history section */
-    if (searchHistory)
-      addSuggestions(history.suggest(query).slice(0, historyLimit), 'history')
-    // ---
 
     /* currency section */
     if (currencyCommonRegex.test(query))
@@ -94,7 +83,7 @@ function useSuggestions(query, autoCompleteEngine) {
       })
     // ---
     
-  }, [query, searchHistory, autoCompleteEngine, autocompleteLimit, historyLimit, addSuggestions, locale])
+  }, [query, autoCompleteEngine, autocompleteLimit, addSuggestions, locale])
 
   return suggestions
 }

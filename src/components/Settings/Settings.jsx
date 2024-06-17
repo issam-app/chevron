@@ -119,24 +119,6 @@ function Settings({ onClose }) {
                 }}>
                   Reset settings
               </Button>
-              <Button
-                sx={theme => ({ 
-                  borderRadius: 0,
-                  background: theme.vars.palette.background.level1,
-                  '&:focus': {
-                    outline: 'none',
-                    backgroundColor: theme.vars.palette.primary.outlinedActiveBg
-                  }
-                })}
-                fullWidth
-                variant='soft'
-                color='neutral'
-                onClick={() => {
-                  localStorage.removeItem('history')
-                  location.reload()
-                }}>
-                  Clean history
-              </Button>
             </Box>
           </Box>
         </Card>

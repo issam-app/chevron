@@ -6,7 +6,6 @@ import QuickLook from '../QuickLook/QuickLook'
 const getElement = mode => {
   switch(mode) {
     case null:
-    case 'opened':
     case 'default':
       return 'Chevron'
     case 'searching':
