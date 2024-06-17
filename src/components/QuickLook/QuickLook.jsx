@@ -39,7 +39,7 @@ function QuickLook ({ visibility, onAnimationEnd }) {
   const bottomCurvature = settings.chevron.quickLook.bottomCurvature
   const showMacrosLabel = settings.chevron.quickLook.showMacrosLabel
   const notifyAboutForcedSearchEngine = settings.query.notifyAboutForcedSearchEngine
-  
+
   /* store */
   const mode = useStateSelector(store => store.mode)
   const query = useStateSelector(store => store.query)
@@ -151,7 +151,7 @@ function QuickLook ({ visibility, onAnimationEnd }) {
         default: {
           async searching() {
             // changing the shape to flat shape
-            controls.path.start({
+            await controls.path.start({
               d: stages[0],
               transition: {
                 ease: easeInBack,
@@ -175,7 +175,7 @@ function QuickLook ({ visibility, onAnimationEnd }) {
         searching: {
           async default() {
             // opening
-            controls.path.start({
+            await controls.path.start({
               d: stages[1],
               transition: {
                 ease: easeOutElastic,
@@ -195,7 +195,7 @@ function QuickLook ({ visibility, onAnimationEnd }) {
         redirected: {
           async any() {
             // horizontal stretch
-            controls.path.start({
+            await controls.path.start({
               d: stages[2](window.innerWidth/window.innerHeight),
               transition: {
                 ease: easeInOutQuart,
@@ -249,8 +249,8 @@ function QuickLook ({ visibility, onAnimationEnd }) {
       alignSelf: 'flex-start'
     }}>
       <div className={classes['clip-container']}>
-        <motion.div 
-          className={classes['label-container']} 
+        <motion.div
+          className={classes['label-container']}
           animate={textControls}>
           <div className={classes['label']}>{label}</div>
         </motion.div>

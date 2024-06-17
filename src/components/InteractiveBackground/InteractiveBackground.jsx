@@ -15,7 +15,7 @@ function InteractiveBackground({
   rowDensity=6, // space between rows
   textColor='#d2d2d2',
   textSize='5vmin',
-  textOpacity=.2,
+  textOpacity=.4,
   style={}
 }) {
   // settings
@@ -73,7 +73,7 @@ function InteractiveBackground({
 
   return (
     <div 
-      className={classes['viewport']} 
+      className={classes['viewport']}
       style={{...variables, ...style}}>
       <div className={classes['container']}>
         { marquee }

@@ -117,7 +117,7 @@ export default class ParsedQuery {
     /* direct URL section */
     if (this.normalisedURL)
       if (!this.macro)
-        label = 'redirect'
+        label = 'redirection'
     // ---
 
     return label

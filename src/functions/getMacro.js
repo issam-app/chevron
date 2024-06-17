@@ -1,54 +1,72 @@
-function isSubstringNonSubsequent(needle, haystack) {
-    let j = 0;
+function isAlpha(c) {
+    return /^([A-Z a-z])$/i.test(c);
+}
 
-    for (let i = 0; i < haystack.length; i++) {
-        if (needle[j] === haystack[i]) {
-            j++;
+function matchScore(query, maccro) {
+    let j = 0;
+    let score = 1;
+
+    for (let i = 0; i < maccro.length && j < query.length; i++) {
+        if (query[j] === maccro[i]) {
+            if (j === 0 && i !== 0) {
+                score += 10
+            }
+            j++
+        } else {
+            score += 5
         }
     }
 
-    return j === needle.length;
+    return j === query.length ? score : 0;
 }
 
 function splitQuery(query) {
     let notAlpha = 0;
 
     for (let i = 0; i < query.length; i++) {
-        if (query[i].toLowerCase() === query[i].toUpperCase()) {
+        if (!isAlpha(query[i])) {
             notAlpha = i;
             break;
         }
     }
 
     if (notAlpha) {
-        return [query.slice(0, notAlpha), query.slice(notAlpha)];
+        return [query.slice(0, notAlpha).toLowerCase(), query.slice(notAlpha)];
     } else {
-        return [query, null];
+        return [query.toLowerCase(), null];
     }
 }
 
 function getMacro(query, normalisedURL = null) {
 
-    let [queryTxt, commandTxt] = splitQuery(query);
+    if (normalisedURL) return null
 
-    // searching for a macro by url
-    if (!normalisedURL && queryTxt.length > 1) {
-        // searching for a macro by triggers
-        for (const macro of window.CONFIG.macros) {
-            // iterating through triggers
-            if (isSubstringNonSubsequent(queryTxt.toLowerCase(), macro.name.toLowerCase())) {
-                if (commandTxt) {
+    let [queryTxt, commandTxt] = splitQuery(query);
+    let bestMatch = null;
+    let bestScore = 0;
+
+    for (const macro of window.CONFIG.macros) {
+        let score = matchScore(queryTxt, macro.name.toLowerCase())
+
+        if (score && (score < bestScore || !bestScore)) {
+            bestMatch = macro;
+            bestScore = score;
+        }
+    }
+
+    if (bestMatch) {
+        if (commandTxt) {
                     const command = getCommand(commandTxt);
-                    if (typeof macro.commands === 'object' && command) {
+                    if (typeof bestMatch.commands === 'object' && command) {
                         // if the command is defined in the macro
-                        if (Object.prototype.hasOwnProperty.call(macro.commands, command.type))
-                            return {options: macro, command}
+                        if (Object.prototype.hasOwnProperty.call(bestMatch.commands, command.type))
+                            return {options: bestMatch, command}
                     }
                 } else {
-                    return {options: macro, command: null}
+                    return {options: bestMatch, command: null}
                 }
-            }
-        }
+    } else {
+        return null
     }
 
     // macro wasn't found
