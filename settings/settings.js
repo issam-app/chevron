@@ -14,7 +14,7 @@ const template = {
       { format: '{@}ms' }
     ),
     locale: new types.Input('fr-FR', '[language]-[COUNTRY]'),
-    tabTitle: new types.Input('Chevron'),
+    tabTitle: new types.Input('start.issam'),
     // hidden
     redirectTarget: new types.Switch('_self', ['_self', '_blank'])
   },
