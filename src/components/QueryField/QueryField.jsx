@@ -115,6 +115,7 @@ function QueryField() {
     }
 
     const input = <input
+        autoFocus={true}
         ref={inputRef}
         value={parsedQuery.value}
         className={gC(classes['field'])}
